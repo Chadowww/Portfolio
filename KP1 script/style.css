@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    background-image: url('KP1_FOND_ECRAN.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: #102A63;
+}
+
+main{
+    min-height: 100vh;
+    padding-top: 350px;
+}
+form {
+    color: #F3912D;
+    font-size: 35px
+}
+
+h1 {
+    font-size: 60px;
+    color: #F3912D;
+    margin: auto;
+    text-align: center;
+}
+#FormulaireP {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-top: 130px;
+}
+
+#FormulaireA {
+    width: fit-content;
+    margin: 100px auto auto;
+}
+
+#resultat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 22%;
+    height: 12%;
+    margin: auto;
+    color: #F3912D;
+    font-size: 35px
+}
+
+#valid {
+    margin:50px 10px 0;
+}
+form input{
+    width: 50px;
+}
+input{
+    width: 150px;
+}
+.marge{
+    width: 150px;
+}
+#calcule {
+    position: absolute;
+    margin-top: 0;
+}
+
+#verif {
+    z-index: inherit;
+    margin-top: 0;
+}
+
+.marge {
+    margin-left: 2.5em;
+}
+
+@media screen and (max-width:1440px){
+main *{
+}
+}
