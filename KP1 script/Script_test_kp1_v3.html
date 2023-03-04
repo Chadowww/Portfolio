@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script-KP1</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript">
+
+        function volume() {
+            /*Initialisation des Variables à partir du formulaire*/
+
+            /*déclaration variable Poutre*/
+            poutre_Long = poutreLong.value;
+            const poutre_Haut = poutreHaut.value;
+            const poutre_Epais = poutreEpais.value;
+            const volume_Poutre = poutre_Long * poutre_Haut * poutre_Epais;
+            document.getElementById("volume_Poutre").innerHTML = (volume_Poutre / 1000000).toFixed(2);
+            /*déclaration variable Reservation*/
+            const reser_Long = reserLong.value;
+            const reser_Haut = reserHaut.value;
+            const reser_Epais = reserEpais.value;
+            const reser_posi = positionReser.value;
+            const volume_Reser = reser_Long * reser_Haut * reser_Epais;
+            document.getElementById("volume_Reser").innerHTML = (volume_Reser / 1000000).toFixed(2);
+            /*déclaration variable Rehausse*/
+            const rehaus_Long = rehausLong.value;
+            const rehaus_Haut = rehausHaut.value;
+            const rehaus_Epais = rehausEpais.value;
+            const rehaus_posi = positionRehaus.value;
+            const volume_Rehaus = rehaus_Long * rehaus_Haut * rehaus_Epais;
+            document.getElementById("volume_Rehaus").innerHTML = (volume_Rehaus / 100000).toFixed(2);
+            /*volume Total de la poutre*/
+            const volume_Total = volume_Poutre - volume_Reser + volume_Rehaus;
+            document.getElementById("volume_Total").innerHTML = (volume_Total / 1000000).toFixed(2);
+            /*déclaration variable centre gravité de la poutre*/
+            const surface1 = ((poutre_Long - reser_Long) * poutre_Haut);
+            console.log(`surface1 = (${poutre_Long}-${reser_Long})x${poutre_Haut} = ${surface1}`)
+            const xg1 = ((poutre_Long - reser_Long) / 2);
+            console.log(`xg1 = ${poutre_Long}-${reser_Long} = ${xg1}`);
+            const yg1 = (poutre_Haut / 2);
+            console.log(`yg1 = ${poutre_Haut}/2 = ${yg1}`);
+            const Sxg1 = (surface1 * xg1);
+            console.log(`Sxg1 = ${surface1}x${xg1} = ${Sxg1}`);
+            const Syg1 = (surface1 * yg1);
+            console.log(`Syg1 = ${surface1}x${yg1} = ${Syg1}`);
+            const surface2 = ((poutre_Haut - reser_Haut) * reser_Long);
+            console.log(`surface2 = (${poutre_Haut}-${reser_Haut})x${reser_Long} = ${surface2}`)
+            const xg2 = (parseFloat(reser_Long) / 2 + parseFloat(reser_posi));
+            console.log(`xg2= ${reser_Long}/2 + ${reser_posi} = ${xg2}`);
+            const yg2 = ((parseFloat(poutre_Haut) - parseFloat(reser_Haut)) / 2 + parseFloat(reser_Haut));
+            console.log(`yg2 = (${poutre_Haut}-${reser_Haut})/2+${reser_Haut} = ${yg2}`);
+            const Sxg2 = (surface2 * xg2);
+            console.log(`Sxg2 = ${surface2}x${xg2} = ${Sxg2}`);
+            const Syg2 = (surface2 * yg2);
+            console.log(`Syg2 = ${surface2}x${yg2} = ${Syg2}`);
+            const surface3 = (rehaus_Haut * rehaus_Long);
+            console.log(`surface3 = ${rehaus_Haut}x${rehaus_Long} = ${surface3}`)
+            const xg3 = (parseFloat(rehaus_Long) / 2 + parseFloat(rehaus_posi));
+            console.log(`xg3 = ${rehaus_Long} / 2= ${xg3}`);
+            const yg3 = (rehaus_Haut / 2);
+            console.log(`yg3 = ${rehaus_Haut}/2 = ${yg3}`);
+            const Sxg3 = (surface3 * xg3);
+            console.log(`Sxg3 = ${surface3}x${xg3} = ${Sxg3}`);
+            const Syg3 = (surface3 * yg3);
+            console.log(`Syg3 = ${surface3}x${yg3} = ${Syg3}`);
+            surfacei = parseFloat(surface1) + parseFloat(surface2) + parseFloat(surface3);
+            console.log(`surfacei = ${surface1}+ ${surface2}+${surface3} = ${surfacei}`);
+            xgi = parseFloat(Sxg1) + parseFloat(Sxg2) + parseFloat(Sxg3);
+            console.log(`xgi = ${Sxg1}+${Sxg2}+${Sxg3} = ${xgi}`);
+            ygi = parseFloat(Syg1) + parseFloat(Syg2) + parseFloat(Syg3);
+            console.log(`ygi= ${Syg1}+${Syg2}+${Syg3} = ${ygi}`);
+        }
+        function ancrageresa() {
+
+            /*déclaration variable de la position de l'ancre1*/
+            const distance_Ancre1 = distanceAncre1.value;
+            /* calcule du centre de gravité*/
+            const centreGx = (xgi / surfacei);
+            console.log(`centreGx = ${xgi}/${surfacei} = ${centreGx}`)
+            const centreGy = (ygi / surfacei);
+            console.log(`centreGy = ${ygi}/${surfacei} = ${centreGy}`)
+            /*résultat de la position de l'ancre2*/
+            const distance_Ancre2 = centreGx - (poutre_Long - distance_Ancre1 - centreGx);
+            document.getElementById("distanceAncre2").innerHTML = distance_Ancre2;
+            console.log(`distance_Ancre2 = ${poutre_Long}-${distance_Ancre1}-${centreGx} = ${distance_Ancre2}`)
+
+        }
+    </script>
+</head>
+<body>
+    <h1>Calculateur d'équilibre d'ancre sur poteau KP1</h1>
+    <!-- Formulaire de saisie des variables -->
+    <form id="FormulaireP">
+        <!-- ici les saisies de la poutre-->
+        <div id="Poutre">
+            Longueur poutre :<input value="0" type="text" id="poutreLong" style="width: 40px" />cm</br>
+            Hauter Poutre :<input value="0" type="text" id="poutreHaut" style="width: 40px" />cm</br>
+            Epaisseur Poutre : <input value="0" type="text" id="poutreEpais" style="width: 40px" />cm</br>
+            Volume de la poutre :<div id="volume_Poutre" style="display:inline"></div>m&#xB3;
+        </div>
+        <!--ici les saisies de la réservation-->
+        <div id="Reservation">
+            Longueur Reservation : <input value="0" type="text" id="reserLong" style="width: 40px" />cm</br>
+            Hauteur Reservation :<input value="0" type="text" id="reserHaut" style="width: 40px" />cm</br>
+            Epaiseur Reservation : <input value="0" type="text" id="reserEpais" style="width: 40px" />cm</br>
+            Position Reservation : <input value="0" type="text" id="positionReser" style="width: 40px" />cm</br>
+            Volume reservation :<div id="volume_Reser" style="display:inline"></div>m&#xB3;
+        </div>
+        <!-- ici les saisies de la rehausse-->
+        <div id="Rehausse">
+            Longueur rehausse : <input value="0" type="text" id="rehausLong" style="width: 40px" />cm</br>
+            Hauteur rehausse :<input value="0" type="text" id="rehausHaut" style="width: 40px" />cm</br>
+            Epaiseur rehausse : <input value="0" type="text" id="rehausEpais" style="width: 40px" />cm</br>
+            Position rehausse : <input value="0" type="text" id="positionRehaus" style="width: 40px" />cm</br>
+            Volume de la rehausse :<div id="volume_Rehaus" style="display:inline"></div>m&#xB3;
+        </div>
+        <!--ici le bouton de validation des variables-->
+        <center><input id="valid" type="button" value="Valider les côtes" onclick="volume()"></center>
+        <!-- le résultat de l'étape de cacule volume-->
+        <div id="resultat">
+            Volume total :<div id="volume_Total" style="display:inline"></div>m&#xB3;</br>
+        </div>
+    </form>
+
+    <!--formulaire de calcule des positions des ancres-->
+    <form id="FormulaireA">
+        Définir position de la première ancre: <input type="text" id="distanceAncre1" style="width: 40px" />cm
+        <input type="button" value="valdier la position" onclick="ancrageresa()" class="marge"></br>
+        position de l'ancre 2: <span id="distanceAncre2" style="display:inline"></span> cm</br>
+    </form>
+</body>
+
+</html>

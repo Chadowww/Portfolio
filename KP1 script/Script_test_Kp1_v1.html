@@ -1,0 +1,32 @@
+
+		<script>
+            /* initialiser les varaibles du formulaire*/
+        var	 
+        PoutreLong = prompt ("Longueur de la poutre:"); 
+        PoutreHaut = prompt("Hauteur de la poutre:");  
+        PoutreEpais = prompt ("Epaisseur de la poutre:"); 
+        VolumePoutre = PoutreLong * PoutreHaut * PoutreEpais; 
+        ReserLong = prompt ("Longueur de la reservation:"); 
+        ReserHaut = prompt ("hauteur de la reservation:"); 
+        ReservEpais = prompt ("epaisser de la reservation:"); 
+        VolumeReser = ReserLong * ReserHaut * ReservEpais 
+        RehausLong = prompt ("Longueur de la rehausse:");
+        RehausHaut = prompt ("Hauteur de la rehausse:");
+        RehausEpai = prompt ("Epaisseur de la Rehausse:");
+        VolumeRehau = RehausLong * RehausHaut * RehausEpai;
+        VolumeTotal = VolumePoutre - VolumeReser ; 
+            alert("Le volume est de :" +VolumeTotal)
+        PointEquilibre1 = (VolumeTotal / 2)/(PoutreEpais * PoutreHaut) ; 
+            alert("Le point d'équilibre est de : " +PointEquilibre1)
+        DistanceAncre1 = prompt ("Définir Distance de l'ancre 1"); 
+        PointEquilibre2 = PoutreLong - PointEquilibre1; 
+        Longueur2 = PointEquilibre2 - DistanceAncre1; 
+        VolumeDistanceAncre1 = Longueur2 * PoutreEpais * PoutreHaut; 
+        VolumeDistanceAncre2 = (VolumeTotal / 2) - VolumeDistanceAncre1;
+        DistanceAncre2 = VolumeDistanceAncre2 / (PoutreHaut * PoutreEpais);
+            alert("La distance de l'ancre 2 est : " +DistanceAncre2)
+        Verification1 = PointEquilibre2 - DistanceAncre2
+        Verification2 = Verification1 * PoutreHaut * PoutreEpais
+        
+        
+    </script>

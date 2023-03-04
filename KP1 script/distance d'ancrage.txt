@@ -1,0 +1,42 @@
+Poutre d'un volume de 1.92m3 mesurant 15.24m de L 0.30 de l 0.50 de H et une baillonette de 4m sur 0.30 de H
+
+
+1-Trouver le point d'équilibre.
+V/2=0.96
+
+0.96= 0.30 * 0.50 * x
+0.96= 0.15x
+0.96/0.15 = x
+6.4 = x
+
+Le point d'équilibre se trouve à 6.4m à l'opposé de la baillonette
+
+-2 Répartition de la masse de l'ancre à droite (l'ancre dans ce cas se trouve à 4.6m position obligatoire à cause des ferrailles)
+
+8.84 - 4.6 = 4.24		(8.84 est la L de la partie droite de la poutre en partant du point d'équilibre)
+V= 4.24 * 0.30 * 0.50 = 0.636
+
+donc le masse répartie sur l'ancre droite est 0.636 à gauche de l'ancre et 0.324 à droite de l'ancre 
+(0.636+0.324=0.96m3 soit la moitié de la poutre comme vu précédement)
+
+-3 Position de l'ancre gauche
+
+Répartition de la masse de l'ancre Gauche, en toute logique pour répartir la masse équitablement nous devons avoir 0.324 à gauche 
+de l'ancre et 0.636 à droite.
+
+cherchons la longueur de la masse 0.27m3
+0.324=0.50 * 0.30 * x
+0.324=0.15x
+0.324/0.15= x
+2.16=x
+
+L'ancre va donc se retrouver à 2.16m de l'about gauche.
+ Vérifions si la charge à gauche de l'ancre équivaux à celle de la partie droite de la poutre
+
+6.4m(la moitié de la masse de la poutre) - 2.16 = 4.24
+
+4.24 * 0.50 * 0.30 = 0.636
+
+donc le masse répartie sur l'ancre gauche  est de 0.324m3 à gauche de l'ancre et 0.636m3 à droite de l'ancre
+Les deux partie sont symétrique, la poutre sortiera droite.
+

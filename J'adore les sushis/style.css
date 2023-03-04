@@ -1,0 +1,42 @@
+header{text-align:center;padding-top:100px;}
+body{background-color:#031916; font-family:'PAPYRUS';	width:100%; color:white;}
+h1{color:#9c0e3f; position:center;margin:0;font-size:50px;}
+h2{color:white;margin:0;margin-bottom:17px;font-size:46px;text-align: center;}
+h3{color:#9c0e3f;margin:0;font-size:20px;}
+p{color:white;margin:0;font-size: 14px;}
+em{color:#9c0e3f;margin:0;}
+strong{color:#9c0e3f; font-size:18px;}
+li{list-style-type: none;}
+a{color:#9c0e3f}
+
+
+#bandeau{width:100%;}
+#bandeau.fixed{position: fixed; top:0; background-color:#031916;padding-bottom:15px; z-index: 2;}
+#bandeau.fixed #adresse{height:5%;font-size:15px;}
+#bandeau.fixed #horaires{height:5%;font-size:15px;}
+#bandeau.fixed #menu {font-size:12px;margin-top:50px;}
+#bandeau.fixed #menu ul{font-size:12px;}
+#bandeau.fixed #menu ul li{font-size:15px;}
+#bandeau.fixed #menu ul li {font-size:15px;}
+#horaires{float:left;width:25%;font-size:25px;}
+
+#adresse {float:left;width:25%;font-size:22px;}
+#menu {float:left;width:50%;margin-top:90px;}
+#menu ul{ float:left; list-style-type:none;width:100%;}
+#menu ul li {float:left;color:#9c0e3f;text-align:center;margin:5px;width:22%}
+
+#carouselExampleIndicators{background-color:#031916; margin-top:250px; z-index: 1;}
+
+#les_plateaux{width: inherit; float:left; text-align:center; margin:auto;}
+#la_carteb{display: flex;justify-content: center; width: 100%;float:left; text-align:center;margin: 0;}
+#la_carte_gauche{float:left; text-align:center;width: 50%;}
+#la_carte_droit{float:left; text-align:center;width: 50%;}
+#les_variantesb{display: flex;justify-content: center; width: 100%;float:left; text-align:center;margin: 0}
+#les_variantes_gauche{float:left; text-align:center;width: 50%; }
+#les_variantes_droit{float:left; text-align:center;width: 50%;}
+#boisson_dessert{float:left;text-align:center;margin:auto;}
+#boisson_gauche{float:left; text-align:center; margin:auto;}
+
+
+.carousel-inner{padding:auto;margin:auto;}
+.carousel-item{padding:auto;margin:auto;}

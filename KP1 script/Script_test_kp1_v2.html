@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script-KP1</title>
+    <style>
+        body {
+            background-image: url('KP1_FOND_ECRAN.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-color: #102A63;
+            width: 95%;
+            margin: 0;
+            padding-left: 5%;
+        }
+
+        form {
+            color: #F3912D;
+            font-size: 35px
+        }
+
+        h1 {
+            font-size: 60px;
+            color: #F3912D;
+            margin-top: 1.5%;
+            margin-bottom: 4%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+
+        #Poutre {
+            width: 25%;
+            margin-left: 15%;
+            display: inline-block;
+        }
+
+        #Reservation {
+            width: 25%;
+            margin: auto;
+            display: inline-block;
+        }
+
+        #Rehausse {
+            margin: auto;
+            width: 25%;
+            display: inline-block;
+        }
+
+        #FormulaireP {
+            margin-top: 18%;
+            margin-bottom: 0%;
+        }
+
+        #FormulaireA {
+            margin-left: 33%;
+        }
+
+        #resultat {
+            width: 22%;
+            height: 12%;
+            margin: auto;
+        }
+
+        #valid {
+            margin: 50px;
+            margin-top: 10px;
+        }
+
+        #calcule {
+            position: absolute;
+            margin-top: 0px;
+        }
+
+        #verif {
+            z-index: inherit;
+            margin-top: 0px;
+        }
+
+        .marge {
+            margin-left: 2.5em;
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        function volume() {
+            /*Initialisation des Variables à partir du formulaire*/
+
+            /*déclaration variable Poutre*/
+            poutre_Long = poutreLong.value;
+            poutre_Haut = poutreHaut.value;
+            poutre_Epais = poutreEpais.value;
+            volume_Poutre = poutre_Long * poutre_Haut * poutre_Epais;
+            document.getElementById("volume_Poutre").innerHTML = volume_Poutre.toFixed(2);
+            /*déclaration variable Reservation*/
+            reser_Long = reserLong.value;
+            reser_Haut = reserHaut.value;
+            reser_Epais = reserEpais.value;
+            volume_Reser = reser_Long * reser_Haut * reser_Epais;
+            document.getElementById("volume_Reser").innerHTML = volume_Reser.toFixed(2);
+            /*déclaration variable Rehausse*/
+            rehaus_Long = rehausLong.value;
+            rehaus_Haut = rehausHaut.value;
+            rehaus_Epais = rehausEpais.value;
+            volume_Rehaus = rehaus_Long * rehaus_Haut * rehaus_Epais;
+            document.getElementById("volume_Rehaus").innerHTML = volume_Rehaus.toFixed(2);
+            /*volume Total de la poutre*/
+            volume_Total = volume_Poutre - volume_Reser + volume_Rehaus;
+            document.getElementById("volume_Total").innerHTML = volume_Total.toFixed(2);
+            /*calcule point d'équilibre de la poutre*/
+            point_Equilibre1 = (volume_Total / 2) / (poutre_Epais * poutre_Haut);
+            document.getElementById("point_Equilibre1").innerHTML = point_Equilibre1.toFixed(2);
+        }
+        function ancrageresa() {
+            /*déclaration variable de la position de l'ancre1*/
+            distance_Ancre1 = distanceAncre1.value;
+            document.getElementById("distance_Ancre1").innerHTML = distance_Ancre1;
+
+            /* calcule de la position de l'ancre 2*/
+            point_Equilibre2 = poutre_Long - point_Equilibre1;
+            document.getElementById("point_Equilibre2").innerHTML = point_Equilibre2.toFixed(2);
+            longueur2 = point_Equilibre2 - distance_Ancre1;
+            document.getElementById("longueur2").innerHTML = longueur2.toFixed(2);
+            volume_Distance_Ancre1 = longueur2 * poutre_Epais * poutre_Haut;
+            document.getElementById("volume_Distance_Ancre1").innerHTML = volume_Distance_Ancre1.toFixed(2);
+            volume_Distance_Ancre2 = (volume_Total / 2) - volume_Distance_Ancre1;
+            document.getElementById("volume_Distance_Ancre2").innerHTML = volume_Distance_Ancre2.toFixed(2);
+
+            /*résultat de la position de l'ancre2*/
+            distanceAncre2 = volume_Distance_Ancre2 / (poutre_Haut * poutre_Epais);
+            document.getElementById("distanceAncre2").innerHTML = distanceAncre2.toFixed(2);
+
+            /*Vérifiction de la répartition des masses*/
+            verification1 = point_Equilibre1 - distanceAncre2;
+            document.getElementById("verification1").innerHTML = verification1.toFixed(2);
+            verification2 = verification1 * poutre_Haut * poutre_Epais
+            document.getElementById("verification2").innerHTML = verification2.toFixed(2);
+            verification3 = (volume_Total / 2) - verification2
+            document.getElementById("verification3").innerHTML = verification3.toFixed(2);
+
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Calculateur d'équilibre d'ancre sur poteau KP1</h1>
+    <!-- Formulaire de saisie des variables -->
+    <form id="FormulaireP">
+        <!-- ici les saisies de la poutre-->
+        <div id="Poutre">
+            Longueur poutre :<input type="text" id="poutreLong" style="width: 40px" />m</br>
+            Hauter Poutre :<input type="text" id="poutreHaut" style="width: 40px" />m</br>
+            Epaisseur Poutre : <input type="text" id="poutreEpais" style="width: 40px" />m</br>
+            Volume de la poutre :<div id="volume_Poutre" style="display:inline"></div>m&#xB3;
+        </div>
+        <!--ici les saisies de la réservation-->
+        <div id="Reservation">
+            Longueur Reservation : <input type="text" id="reserLong" style="width: 40px" />m</br>
+            Hauteur Reservation :<input type="text" id="reserHaut" style="width: 40px" />m</br>
+            Epaiseur Reservation : <input type="text" id="reserEpais" style="width: 40px" />m</br>
+            Volume reservation :<div id="volume_Reser" style="display:inline"></div>m&#xB3;
+        </div>
+        <!-- ici les saisies de la rehausse-->
+        <div id="Rehausse">
+            Longueur rehausse : <input type="text" id="rehausLong" style="width: 40px" />m</br>
+            Hauteur rehausse :<input type="text" id="rehausHaut" style="width: 40px" />m</br>
+            Epaiseur rehausse : <input type="text" id="rehausEpais" style="width: 40px" />m</br>
+            Volume de la rehausse :<div id="volume_Rehaus" style="display:inline"></div>m&#xB3;
+        </div>
+        <!--ici le bouton de validation des variables-->
+        <center><input id="valid" type="button" value="Valider les côtes" onclick="volume()"></center>
+        <!-- le résultat de l'étape de cacule volume-->
+        <div id="resultat">
+            Volume total :<div id="volume_Total" style="display:inline"></div>m&#xB3;</br>
+            Le point d'équilibre est à: <div id="point_Equilibre1" style="display:inline"></div>m</br></br>
+        </div>
+    </form>
+
+    <!--formulaire de calcule des positions des ancres-->
+    <form id="FormulaireA">
+        Définir position de la première ancre: <input type="text" id="distanceAncre1" style="width: 40px" />m
+        <input type="button" value="valdier la position" onclick="ancrageresa()" class="marge">
+        <p id="calcule" style="visibility:hidden">
+            Postion enregistré:<span id="distance_Ancre1" style="display:inline"></span>m</br>
+            calcule du point d'équilibre: <span id="point_Equilibre2" style="display:inline"></span>m</br>
+            calcule longueur2: <span id="longueur2" style="display:inline"></span>m</br>
+            Vérifition de la longueur2: <span id="verification1" style="display:inline"></span>m
+        </p>
+        <p id="vérif">
+            position de l'ancre 2: <span id="distanceAncre2" style="display:inline"></span>m</br>
+            répartition de l'ancre 1:<span id="volume_Distance_Ancre2" class="marge"></span>m&#xB3
+            <span class="marge">[ancre]</span>
+            <span id="volume_Distance_Ancre1" class="marge" style="display:inline"></span>m&#xB3</br>
+            répartition de l'ancre 2:<span id="verification2" class="marge" style="display:inline"></span>m&#xB3
+            <span class="marge">[ancre]</span>
+            <span id="verification3" class="marge" style="display:inline"></span>m&#xB3</br>
+        </p>
+    </form>
+</body>
+
+</html>
